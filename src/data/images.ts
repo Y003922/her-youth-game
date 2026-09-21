@@ -1,6 +1,6 @@
 export type SceneType = 'campus' | 'dormitory' | 'canteen' | 'library' | 'playground' | 'classroom' | 'exam' | 'home' | 'office'
 
-export type CharacterRole = 'player' | 'canteen_auntie' | 'dorm_auntie' | 'roommate_xiaoyu' | 'roommate_zhangjing' | 'roommate_sisi'
+export type CharacterRole = 'player' | 'canteen_auntie' | 'dorm_auntie' | 'roommate_xiaoyu' | 'roommate_zhangjing' | 'roommate_sisi' | 'teacher'
 
 export interface SceneBackground {
   type: SceneType
@@ -96,8 +96,15 @@ export const characterImages: Record<string, CharacterImage> = {
     id: 'roommate_zhangjing',
     name: '张静',
     role: 'roommate_zhangjing',
-    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20young%20Chinese%20woman%20with%20long%20hair%20gentle%20smile%20wearing%20glasses%20studious%20expression%20soft%20lighting&image_size=portrait_4_3',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20young%20Chinese%20woman%20with%20long%20straight%20black%20hair%20warm%20gentle%20smile%20wearing%20casual%20sweater%20friendly%20expression%20soft%20warm%20lighting%20clean%20background&image_size=portrait_4_3',
     expression: 'normal',
+  },
+  teacher: {
+    id: 'teacher',
+    name: '林老师',
+    role: 'teacher',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20young%20Chinese%20female%20teacher%20with%20short%20hair%20gentle%20intellectual%20expression%20wearing%20blazer%20holding%20book%20warm%20lighting%20clean%20background&image_size=portrait_4_3',
+    expression: 'kind',
   },
   roommate_sisi: {
     id: 'roommate_sisi',
