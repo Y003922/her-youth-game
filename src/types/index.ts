@@ -29,6 +29,7 @@ export interface StoryEvent {
   characterImage?: string
   backgroundImage?: string
   isCloseUp?: boolean
+  sceneImage?: string
   choices: Choice[]
   isEnding?: boolean
   endingTitle?: string
