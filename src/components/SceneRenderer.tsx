@@ -143,6 +143,17 @@ export function SceneRenderer() {
                 <span className="text-lg font-medium text-gray-700">{currentEvent.scene}</span>
               </div>
 
+              {currentEvent.sceneImage && (
+                <div className="mb-4 rounded-xl overflow-hidden shadow-lg max-h-48">
+                  <img
+                    src={currentEvent.sceneImage}
+                    alt="场景图片"
+                    className="w-full h-full object-cover"
+                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+                  />
+                </div>
+              )}
+
               <div className="text-gray-800 text-lg lg:text-xl leading-relaxed whitespace-pre-line min-h-[180px]">
                 {displayedText}
                 {isTyping && (
