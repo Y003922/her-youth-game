@@ -68,7 +68,7 @@ export function StartPage() {
             她的青春
           </h1>
           <p className="text-gray-600 text-lg">
-            普通二本女生的成长日记
+            普通女生的成长日记
           </p>
           <p className="text-gray-500 mt-2">
             从文学殿堂到AI+人文的跨界之旅
