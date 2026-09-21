@@ -6,7 +6,6 @@ export function StartPage() {
   const startChapter = useGameStore((state) => state.startChapter)
   const isGameStarted = useGameStore((state) => state.isGameStarted)
   const chapters = useGameStore((state) => state.chapters)
-  const unlockedChapters = useGameStore((state) => state.unlockedChapters)
   const setPlayerName = useGameStore((state) => state.setPlayerName)
   const [playerNameInput, setPlayerNameInput] = useState('')
   const [nameError, setNameError] = useState('')
@@ -20,13 +19,13 @@ export function StartPage() {
     return match ? parseInt(match[1]) : 0
   }
 
-  const getChapterStatus = (chapterId: string): 'locked' | 'unlocked' => {
-    if (chapterId === 'prologue') return 'unlocked'
-    return unlockedChapters.includes(chapterId) ? 'unlocked' : 'locked'
+  const getChapterStatus = (): 'locked' | 'unlocked' => {
+    // 全部章节开放，可自由选择体验
+    return 'unlocked'
   }
 
   const handleChapterClick = (chapterId: string) => {
-    if (getChapterStatus(chapterId) === 'unlocked') {
+    if (getChapterStatus() === 'unlocked') {
       if (!playerNameInput.trim()) {
         setNameError('请输入你的名字')
         return
@@ -122,7 +121,7 @@ export function StartPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {sortedChapters.map((chapter, index) => {
-                const status = getChapterStatus(chapter.id)
+                const status = getChapterStatus()
                 const isUnlocked = status === 'unlocked'
                 const chapterNumber = getChapterNumber(chapter.id)
                 
@@ -160,7 +159,7 @@ export function StartPage() {
           )}
 
           <p className="text-center text-gray-500 text-sm mt-6">
-            完成章节后将自动解锁下一章 | 可随时回顾已完成的章节
+            所有章节已开放 | 可自由选择任意章节开始体验
           </p>
         </div>
 

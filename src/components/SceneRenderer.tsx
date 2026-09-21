@@ -79,11 +79,18 @@ export function SceneRenderer() {
   }
 
   if (!currentEvent) {
+    const returnToHome = useGameStore.getState().returnToHome
     return (
       <div className="flex items-center justify-center h-full text-gray-500">
         <div className="text-center">
           <div className="text-6xl mb-4">📖</div>
-          <p className="text-lg">暂无剧情，请开始游戏</p>
+          <p className="text-lg mb-4">暂无剧情，请开始游戏</p>
+          <button
+            onClick={returnToHome}
+            className="bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white font-medium py-2 px-6 rounded-lg shadow transition-all"
+          >
+            返回首页
+          </button>
         </div>
       </div>
     )

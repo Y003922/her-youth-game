@@ -64,16 +64,31 @@ export const useGameStore = create<GameStore>()(
       chapters: [],
       gameHistory: [],
       setChapters: (chapters: GameChapter[]) => {
-        set({ chapters })
+        const allChapterIds = chapters.map((c) => c.id)
         const { isGameStarted, currentChapterId, currentEventId, unlockedChapters } = get()
-        if (!unlockedChapters.includes('prologue')) {
-          set({ unlockedChapters: ['prologue', ...unlockedChapters] })
-        }
+
+        // 所有章节默认全部解锁，方便直接选择体验任意章节
+        const mergedUnlocked = Array.from(new Set([...allChapterIds, ...unlockedChapters]))
+
+        // 校验旧存档的进度是否仍然有效；章节或事件不存在时，回到首页，避免"暂无剧情"
+        let isValidProgress = false
         if (isGameStarted && currentEventId) {
           const chapter = chapters.find((c) => c.id === currentChapterId)
-          if (chapter) {
-            set({ currentEventId })
-          }
+          isValidProgress = !!chapter?.events.find((e) => e.id === currentEventId)
+        }
+
+        if (isValidProgress) {
+          set({ chapters, unlockedChapters: mergedUnlocked })
+        } else {
+          set({
+            chapters,
+            unlockedChapters: mergedUnlocked,
+            isGameStarted: false,
+            currentEventId: '',
+            currentChapterId: chapters[0]?.id || 'prologue',
+            visitedEvents: [],
+            gameHistory: [],
+          })
         }
       },
       startGame: () => {
@@ -95,12 +110,9 @@ export const useGameStore = create<GameStore>()(
         }
       },
       startChapter: (chapterId: string) => {
-        const { chapters, unlockedChapters } = get()
+        const { chapters } = get()
         const chapter = chapters.find((c) => c.id === chapterId)
-        if (chapter && (chapterId === 'prologue' || unlockedChapters.includes(chapterId))) {
-          if (!unlockedChapters.includes('prologue')) {
-            set({ unlockedChapters: ['prologue', ...unlockedChapters] })
-          }
+        if (chapter) {
           set({
             isGameStarted: true,
             currentChapterId: chapter.id,
