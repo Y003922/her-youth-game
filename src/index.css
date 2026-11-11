@@ -28,3 +28,82 @@ body {
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out;
 }
+
+/* ===== 桌面小桌宠动画（全部使用 transform/opacity，GPU 加速，避免掉帧） ===== */
+@keyframes pet-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+@keyframes pet-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pet-eat {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(-4deg) translateY(2px); }
+  50% { transform: rotate(0deg) translateY(-3px); }
+  75% { transform: rotate(4deg) translateY(2px); }
+}
+
+@keyframes pet-sleep {
+  0%, 100% { transform: rotate(-8deg) scale(0.98); }
+  50% { transform: rotate(-8deg) scale(1.02); }
+}
+
+@keyframes pet-study {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(3px) rotate(2deg); }
+}
+
+@keyframes pet-bubble {
+  0% { opacity: 0; transform: scale(0.7) translateY(6px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes pet-zzz {
+  0% { opacity: 0; transform: translate(0, 6px) scale(0.6); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: translate(14px, -18px) scale(1.1); }
+}
+
+@keyframes pet-sparkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.pet-mode-idle .pet-portrait {
+  animation: pet-float 3s ease-in-out infinite, pet-breathe 3s ease-in-out infinite;
+}
+.pet-mode-eat .pet-portrait {
+  animation: pet-eat 0.9s ease-in-out infinite;
+}
+.pet-mode-sleep .pet-portrait {
+  animation: pet-sleep 2.4s ease-in-out infinite;
+}
+.pet-mode-study .pet-portrait {
+  animation: pet-study 1.6s ease-in-out infinite;
+}
+
+.pet-bubble {
+  animation: pet-bubble 0.25s ease-out;
+}
+.pet-zzz span {
+  display: inline-block;
+  animation: pet-zzz 2.2s ease-in-out infinite;
+}
+.pet-zzz span:nth-child(2) { animation-delay: 0.7s; }
+.pet-zzz span:nth-child(3) { animation-delay: 1.4s; }
+.pet-sparkle {
+  animation: pet-sparkle 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pet-mode-idle .pet-portrait,
+  .pet-mode-eat .pet-portrait,
+  .pet-mode-sleep .pet-portrait,
+  .pet-mode-study .pet-portrait {
+    animation: none;
+  }
+}

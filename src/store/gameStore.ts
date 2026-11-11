@@ -328,6 +328,7 @@ export const useGameStore = create<GameStore>()(
         unlockedChapters: state.unlockedChapters,
         isGameStarted: state.isGameStarted,
         year: state.year,
+        playerName: state.playerName,
       }),
     }
   )

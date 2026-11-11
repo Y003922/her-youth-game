@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { sceneBackgrounds, characterImages, getSceneBackground, getCharacterByRole, type SceneType, type CharacterRole } from '@/data/images'
+import { applyName } from '@/utils/name'
 
 export function SceneRenderer() {
   const currentEvent = useGameStore((state) => state.getCurrentEvent())
   const makeChoice = useGameStore((state) => state.makeChoice)
+  const playerName = useGameStore((state) => state.playerName)
   const [displayedText, setDisplayedText] = useState('')
   const [isTyping, setIsTyping] = useState(true)
   const [currentBackground, setCurrentBackground] = useState('')
@@ -30,7 +32,7 @@ export function SceneRenderer() {
     }, 200)
 
     let index = 0
-    const text = currentEvent.text
+    const text = applyName(currentEvent.text, playerName)
     const timer = setInterval(() => {
       if (index < text.length) {
         setDisplayedText(text.slice(0, index + 1))
@@ -42,7 +44,7 @@ export function SceneRenderer() {
     }, 30)
 
     return () => clearInterval(timer)
-  }, [currentEvent])
+  }, [currentEvent, playerName])
 
   const determineSceneType = (sceneName: string): SceneType => {
     if (sceneName.includes('食堂')) return 'canteen'
@@ -162,6 +164,19 @@ export function SceneRenderer() {
               </div>
             </div>
 
+            {!isTyping && currentEvent.isEnding && (
+              <div className="mt-4 rounded-2xl bg-gradient-to-r from-pink-100 to-purple-100 border-2 border-pink-200 p-5 text-center shadow-lg">
+                <p className="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+                  {applyName(currentEvent.endingTitle, playerName)}
+                </p>
+                {currentEvent.endingDescription && (
+                  <p className="mt-2 text-gray-600 leading-relaxed">
+                    {applyName(currentEvent.endingDescription, playerName)}
+                  </p>
+                )}
+              </div>
+            )}
+
             {!isTyping && (
               <div className="space-y-3 mt-4">
                 {currentEvent.choices.map((choice) => (
@@ -179,7 +194,7 @@ export function SceneRenderer() {
                   >
                     <span className="flex items-center gap-3">
                       <span className="text-lg">{choice.recommended ? '🌟' : '✨'}</span>
-                      <span>{choice.text}</span>
+                      <span>{applyName(choice.text, playerName)}</span>
                       {choice.recommended && (
                         <span className="bg-white/20 px-2 py-0.5 rounded text-sm">推荐</span>
                       )}

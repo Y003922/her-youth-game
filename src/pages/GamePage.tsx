@@ -3,6 +3,7 @@ import { useGameStore, type SaveSlot } from '@/store/gameStore'
 import { SceneRenderer } from '@/components/SceneRenderer'
 import { StatusPanel } from '@/components/StatusPanel'
 import { CampusScene } from '@/components/CampusScene'
+import { DesktopPet } from '@/components/DesktopPet'
 
 export function GamePage() {
   const isGameStarted = useGameStore((state) => state.isGameStarted)
@@ -197,6 +198,8 @@ export function GamePage() {
           </div>
         </div>
       )}
+
+      <DesktopPet />
     </div>
   )
 }

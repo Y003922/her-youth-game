@@ -93,6 +93,26 @@ export const campusBuildings: Building[] = [
     color: '#A66CFF',
     description: '学校的正门',
   },
+  {
+    id: 'job_center',
+    name: '兼职中心',
+    position: { x: 40, y: 210 },
+    width: 95,
+    height: 70,
+    icon: '💼',
+    color: '#F38181',
+    description: '学生兼职中心，可接取真实工作任务赚取报酬',
+  },
+  {
+    id: 'library_3d',
+    name: '3D图书馆',
+    position: { x: 500, y: 90 },
+    width: 100,
+    height: 70,
+    icon: '🧊',
+    color: '#4FC3F7',
+    description: '沉浸式3D图书馆，可控制主角自由行走与切换视角',
+  },
 ]
 
 export const campusNPCs: NPCData[] = [

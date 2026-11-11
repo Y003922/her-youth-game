@@ -1,8 +1,14 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, lazy, Suspense } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { campusBuildings, campusNPCs, mapAreas, mapWidth, mapHeight, type Building, type NPCData } from '@/data/campus'
 import { CharacterSprite } from './CharacterSprite'
 import { CanteenScene } from './CanteenScene'
+import { PartTimeJob } from './PartTimeJob'
+
+// 3D 模块按需加载，避免 three.js 拖慢首屏
+const Scene3DViewer = lazy(() =>
+  import('./three/Scene3DViewer').then((m) => ({ default: m.Scene3DViewer }))
+)
 
 interface PlayerState {
   x: number
@@ -23,6 +29,8 @@ export function CampusScene() {
   const [selectedBuilding, setSelectedBuilding] = useState<Building | null>(null)
   const [selectedNPC, setSelectedNPC] = useState<NPCData | null>(null)
   const [showCanteen, setShowCanteen] = useState(false)
+  const [showJob, setShowJob] = useState(false)
+  const [show3D, setShow3D] = useState<string | null>(null)
   const keysPressed = useRef<Set<string>>(new Set())
   const animationRef = useRef<number | undefined>(undefined)
 
@@ -141,6 +149,10 @@ export function CampusScene() {
       goToEvent('chapter1_7')
     } else if (building.id === 'gate') {
       goToEvent('chapter1_1')
+    } else if (building.id === 'job_center') {
+      setShowJob(true)
+    } else if (building.id === 'library_3d') {
+      setShow3D('library')
     }
   }
 
@@ -269,6 +281,27 @@ export function CampusScene() {
 
   if (showCanteen) {
     return <CanteenScene />
+  }
+
+  if (showJob) {
+    return <PartTimeJob onClose={() => setShowJob(false)} />
+  }
+
+  if (show3D) {
+    return (
+      <Suspense
+        fallback={
+          <div className="fixed inset-0 z-30 flex items-center justify-center bg-[#f5f0e8] text-gray-600">
+            <div className="text-center">
+              <div className="text-4xl mb-3 animate-bounce">📖</div>
+              <p>3D 图书馆加载中…</p>
+            </div>
+          </div>
+        }
+      >
+        <Scene3DViewer sceneId={show3D} onClose={() => setShow3D(null)} />
+      </Suspense>
+    )
   }
 
   return (
