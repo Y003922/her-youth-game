@@ -153,6 +153,12 @@ export function CampusScene() {
       setShowJob(true)
     } else if (building.id === 'library_3d') {
       setShow3D('library')
+    } else if (building.id === 'dorm_3d') {
+      setShow3D('dorm')
+    } else if (building.id === 'office_3d') {
+      setShow3D('office')
+    } else if (building.id === 'avenue_3d') {
+      setShow3D('avenue')
     }
   }
 

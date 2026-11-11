@@ -9,6 +9,12 @@ export interface Scene3DContext {
   colliders: THREE.Box3[]
   /** 可行走边界 */
   bounds: { minX: number; maxX: number; minZ: number; maxZ: number }
+  /** 可选相机参数（户外大场景可放宽缩放距离、自定义初始机位） */
+  camera?: {
+    maxDistance?: number
+    initialPosition?: [number, number, number]
+    initialTarget?: [number, number, number]
+  }
   /** 每帧环境动画（灯光微动、漂浮尘埃等） */
   update: (elapsed: number) => void
   dispose: () => void

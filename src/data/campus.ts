@@ -113,6 +113,36 @@ export const campusBuildings: Building[] = [
     color: '#4FC3F7',
     description: '沉浸式3D图书馆，可控制主角自由行走与切换视角',
   },
+  {
+    id: 'dorm_3d',
+    name: '3D宿舍',
+    position: { x: 580, y: 450 },
+    width: 90,
+    height: 50,
+    icon: '🧊',
+    color: '#FF8A80',
+    description: '沉浸式3D女生宿舍，床铺、书桌与暖光小窗',
+  },
+  {
+    id: 'office_3d',
+    name: '3D办公室',
+    position: { x: 680, y: 180 },
+    width: 80,
+    height: 55,
+    icon: '🧊',
+    color: '#78909C',
+    description: '沉浸式3D办公区，格子间工位与电脑屏幕微光',
+  },
+  {
+    id: 'avenue_3d',
+    name: '3D绿荫大道',
+    position: { x: 290, y: 450 },
+    width: 110,
+    height: 50,
+    icon: '🧊',
+    color: '#66BB6A',
+    description: '沉浸式3D户外大道，香樟树、长椅与蓝天白云',
+  },
 ]
 
 export const campusNPCs: NPCData[] = [
