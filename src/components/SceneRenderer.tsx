@@ -67,8 +67,13 @@ export function SceneRenderer() {
   const getCurrentCharacterImage = () => {
     if (!currentEvent) return characterImages.player_normal
 
-    if (currentEvent.characterRole) {
-      const npc = getCharacterByRole(currentEvent.characterRole as CharacterRole)
+    if (currentEvent.characterRole && currentEvent.characterRole !== 'player') {
+      const role = currentEvent.characterRole
+      if (currentEvent.characterExpression) {
+        const byExpression = characterImages[`${role}_${currentEvent.characterExpression}`]
+        if (byExpression) return byExpression
+      }
+      const npc = getCharacterByRole(role as CharacterRole)
       if (npc) return npc
     }
 

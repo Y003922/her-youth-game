@@ -1,6 +1,6 @@
-export type SceneType = 'campus' | 'dormitory' | 'canteen' | 'library' | 'playground' | 'classroom' | 'exam' | 'home' | 'office'
+export type SceneType = 'campus' | 'dormitory' | 'canteen' | 'library' | 'playground' | 'classroom' | 'exam' | 'home' | 'office' | 'subway' | 'restaurant'
 
-export type CharacterRole = 'player' | 'canteen_auntie' | 'dorm_auntie' | 'roommate_xiaoyu' | 'roommate_zhangjing' | 'roommate_sisi' | 'teacher'
+export type CharacterRole = 'player' | 'canteen_auntie' | 'dorm_auntie' | 'roommate_xiaoyu' | 'roommate_zhangjing' | 'roommate_sisi' | 'teacher' | 'boyfriend'
 
 export interface SceneBackground {
   type: SceneType
@@ -26,6 +26,8 @@ export const sceneBackgrounds: Record<SceneType, string> = {
   exam: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=exam%20hall%20interior%20students%20writing%20exams%20quiet%20serious%20atmosphere%20anime%20style&image_size=landscape_16_9',
   home: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20home%20living%20room%20warm%20family%20atmosphere%20anime%20style%20soft%20colors&image_size=landscape_16_9',
   office: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=college%20counselor%20office%20interior%20desk%20with%20files%20warm%20lighting%20professional%20atmosphere%20anime%20style&image_size=landscape_16_9',
+  subway: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20city%20subway%20station%20exit%20in%20early%20winter%20escalator%20warm%20lighting%20commuters%20in%20coats%20anime%20style%20soft%20colors%20cinematic&image_size=landscape_16_9',
+  restaurant: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20Japanese%20sushi%20restaurant%20interior%20wooden%20counter%20warm%20lantern%20lighting%20plates%20of%20sushi%20anime%20style%20soft%20warm%20colors&image_size=landscape_16_9',
 }
 
 export const characterImages: Record<string, CharacterImage> = {
@@ -112,6 +114,48 @@ export const characterImages: Record<string, CharacterImage> = {
     role: 'roommate_sisi',
     imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20young%20Chinese%20woman%20with%20short%20hair%20wearing%20glasses%20quiet%20expression%20reading%20book%20soft%20lighting&image_size=portrait_4_3',
     expression: 'thinking',
+  },
+  boyfriend_normal: {
+    id: 'boyfriend_normal',
+    name: '他',
+    role: 'boyfriend',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20handsome%20young%20Chinese%20man%20in%20early%20twenties%20with%20fluffy%20curly%20black%20hair%20gentle%20scholarly%20slight%20smile%20wearing%20light%20blue%20casual%20shirt%20clean%20soft%20pastel%20background%20medical%20student%20vibe&image_size=portrait_4_3',
+    expression: 'normal',
+  },
+  boyfriend_happy: {
+    id: 'boyfriend_happy',
+    name: '他',
+    role: 'boyfriend',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20handsome%20young%20Chinese%20man%20in%20early%20twenties%20with%20fluffy%20curly%20black%20hair%20bright%20happy%20smile%20warm%20eyes%20wearing%20light%20blue%20casual%20shirt%20clean%20soft%20pastel%20background&image_size=portrait_4_3',
+    expression: 'happy',
+  },
+  boyfriend_sad: {
+    id: 'boyfriend_sad',
+    name: '他',
+    role: 'boyfriend',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20handsome%20young%20Chinese%20man%20in%20early%20twenties%20with%20fluffy%20curly%20black%20hair%20sad%20troubled%20expression%20downcast%20eyes%20wearing%20light%20blue%20casual%20shirt%20soft%20melancholy%20lighting%20clean%20background&image_size=portrait_4_3',
+    expression: 'sad',
+  },
+  boyfriend_thinking: {
+    id: 'boyfriend_thinking',
+    name: '他',
+    role: 'boyfriend',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20handsome%20young%20Chinese%20man%20in%20early%20twenties%20with%20fluffy%20curly%20black%20hair%20focused%20thinking%20expression%20hand%20on%20chin%20wearing%20light%20blue%20casual%20shirt%20clean%20soft%20pastel%20background&image_size=portrait_4_3',
+    expression: 'thinking',
+  },
+  boyfriend_surprised: {
+    id: 'boyfriend_surprised',
+    name: '他',
+    role: 'boyfriend',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20handsome%20young%20Chinese%20man%20in%20early%20twenties%20with%20fluffy%20curly%20black%20hair%20surprised%20expression%20wide%20eyes%20slightly%20open%20mouth%20wearing%20light%20blue%20casual%20shirt%20clean%20soft%20pastel%20background&image_size=portrait_4_3',
+    expression: 'surprised',
+  },
+  boyfriend_tired: {
+    id: 'boyfriend_tired',
+    name: '他',
+    role: 'boyfriend',
+    imageUrl: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=anime%20style%20portrait%20of%20a%20handsome%20young%20Chinese%20man%20in%20early%20twenties%20with%20fluffy%20curly%20black%20hair%20tired%20sleepy%20expression%20droopy%20eyes%20wearing%20light%20blue%20casual%20shirt%20soft%20dim%20lighting%20clean%20background&image_size=portrait_4_3',
+    expression: 'tired',
   },
 }
 

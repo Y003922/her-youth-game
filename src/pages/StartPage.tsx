@@ -15,8 +15,16 @@ export function StartPage() {
   }
 
   const getChapterNumber = (chapterId: string): number => {
+    if (chapterId === 'love') return 3.5
     const match = chapterId.match(/chapter(\d+)/)
     return match ? parseInt(match[1]) : 0
+  }
+
+  const getChapterBadge = (chapterId: string): string => {
+    if (chapterId === 'love') return '4'
+    if (chapterId === 'chapter4') return '番'
+    const match = chapterId.match(/chapter(\d+)/)
+    return match ? match[1] : ''
   }
 
   const getChapterStatus = (): 'locked' | 'unlocked' => {
@@ -123,8 +131,7 @@ export function StartPage() {
               {sortedChapters.map((chapter, index) => {
                 const status = getChapterStatus()
                 const isUnlocked = status === 'unlocked'
-                const chapterNumber = getChapterNumber(chapter.id)
-                
+
                 return (
                   <button
                     key={chapter.id}
@@ -145,7 +152,7 @@ export function StartPage() {
                     
                     <div className={`relative z-10 ${!isUnlocked ? 'opacity-50' : ''}`}>
                       <div className="flex items-center gap-2 mb-2">
-                        <span className="text-2xl font-bold">{chapterNumber}</span>
+                        <span className="text-2xl font-bold">{getChapterBadge(chapter.id)}</span>
                         {isUnlocked && <span className="text-sm bg-white/20 px-2 py-0.5 rounded">已解锁</span>}
                       </div>
                       <h3 className="text-lg font-bold mb-1">{chapter.title}</h3>

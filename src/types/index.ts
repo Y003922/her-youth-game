@@ -22,7 +22,7 @@ export interface Choice {
 export interface StoryEvent {
   id: string
   scene: string
-  sceneType?: 'campus' | 'dormitory' | 'canteen' | 'library' | 'playground' | 'classroom' | 'exam' | 'home' | 'office'
+  sceneType?: 'campus' | 'dormitory' | 'canteen' | 'library' | 'playground' | 'classroom' | 'exam' | 'home' | 'office' | 'subway' | 'restaurant'
   text: string
   characterExpression?: string
   characterRole?: string
@@ -57,4 +57,4 @@ export interface GameState {
   playerName: string
 }
 
-export type ChapterId = 'chapter1' | 'chapter2' | 'chapter3' | 'chapter4' | 'chapter5'
+export type ChapterId = 'prologue' | 'chapter1' | 'chapter2' | 'chapter3' | 'love' | 'chapter4' | 'chapter5'

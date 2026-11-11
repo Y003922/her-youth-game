@@ -1,5 +1,5 @@
 interface CharacterSpriteProps {
-  type: 'player' | 'xiaoyu' | 'zhangjing' | 'sisi' | 'canteen_auntie' | 'dorm_auntie'
+  type: 'player' | 'xiaoyu' | 'zhangjing' | 'sisi' | 'canteen_auntie' | 'dorm_auntie' | 'boyfriend'
   direction: 'up' | 'down' | 'left' | 'right'
   isMoving?: boolean
   size?: number
@@ -18,6 +18,7 @@ export function CharacterSprite({ type, direction, isMoving = false, size = 50 }
       case 'sisi': return { skin: '#FFF0F5', hair: '#4682B4', top: '#9370DB', bottom: '#B0C4DE', eyes: '#1a1a1a' }
       case 'canteen_auntie': return { skin: '#DEB887', hair: '#DAA520', top: '#F5F5F5', bottom: '#696969', eyes: '#1a1a1a' }
       case 'dorm_auntie': return { skin: '#F4A460', hair: '#CD853F', top: '#20B2AA', bottom: '#F0E68C', eyes: '#1a1a1a' }
+      case 'boyfriend': return { skin: '#FFD4C4', hair: '#1a1a1a', top: '#6FA8DC', bottom: '#4A4A4A', eyes: '#1a1a1a' }
       default: return { skin: '#FFD4C4', hair: '#1a1a1a', top: '#FF69B4', bottom: '#87CEEB', eyes: '#1a1a1a' }
     }
   }
@@ -112,6 +113,22 @@ export function CharacterSprite({ type, direction, isMoving = false, size = 50 }
           <>
             <circle cx={halfSize - headSize * 0.3} cy={size * 0.1} r={headSize * 0.3} fill={colors.hair} />
             <circle cx={halfSize + headSize * 0.3} cy={size * 0.1} r={headSize * 0.3} fill={colors.hair} />
+          </>
+        )}
+
+        {type === 'boyfriend' && (
+          <>
+            <ellipse
+              cx={halfSize}
+              cy={size * 0.09}
+              rx={headSize * 0.78}
+              ry={headSize * 0.42}
+              fill={colors.hair}
+            />
+            <circle cx={halfSize - headSize * 0.62} cy={size * 0.12} r={headSize * 0.22} fill={colors.hair} />
+            <circle cx={halfSize + headSize * 0.62} cy={size * 0.12} r={headSize * 0.22} fill={colors.hair} />
+            <circle cx={halfSize - headSize * 0.15} cy={size * 0.05} r={headSize * 0.18} fill={colors.hair} />
+            <circle cx={halfSize + headSize * 0.2} cy={size * 0.04} r={headSize * 0.16} fill={colors.hair} />
           </>
         )}
 
